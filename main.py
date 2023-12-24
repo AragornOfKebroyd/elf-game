@@ -92,7 +92,7 @@ def run():
     LOWER = 3600
     UPPER = 4600
     STEP = 100
-    GENS = 1000
+    GENS = 200
     find_pareto_points(LOWER, UPPER, STEP, GENS)
 
 class RUNMODE:
@@ -102,7 +102,7 @@ class RUNMODE:
     SAVEPOINTS = 4
 
 if __name__ == '__main__':
-    RMODE = RUNMODE.LOADANDSHOW
+    RMODE = RUNMODE.RUN
 
     match RMODE:
         case RUNMODE.RUN:

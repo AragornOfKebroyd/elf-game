@@ -12,8 +12,8 @@ def run_eval_set_t(S, t, elfLoss=True, elfCount=12):
     VAR = elfCount**2 * ElfStats.VarDc(t)
     return np.array([E, VAR]), ElfStats
 
-def evaluateStrategyWeights(W):
-    S = Strategy(W, type=STRATEGYTYPE.IMPLIED, strict=True)
+def evaluateStrategyWeights(W, type=STRATEGYTYPE.IMPLIED, strict=True):
+    S = Strategy(W, type=type, strict=strict)
     return evaluateStrategy(S)
 
 def evaluateStrategy(S):
@@ -32,7 +32,7 @@ class LOCATION:
 
 class ElfGameStats:
     def __init__(self, strategy, elfLoss=True):
-        self.strategy = np.array(strategy) # shape = (25, 3)
+        self.strategy = strategy.weights # shape = (25, 3)
         
         self.EDc_cache = {}
         self.VarDc_cache = {}
