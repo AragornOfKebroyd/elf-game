@@ -172,9 +172,9 @@ if __name__ == '__main__':
     GENS = 1000
     # find_pareto_points(LOWER, UPPER, STEP, GENS)
     fname = 'pareto-points-1220-2137'
-    loadandshow(fname)
+    # loadandshow(fname)
     # slimpareto(fname)
     slimname = 'slimmed-points-1220-2204'
     # pareto_points = np.load(f'./plots/{slimname}.npy')
     # plot_with_labels(pareto_points)
-    # save_points(slimname)
+    save_points(slimname)
