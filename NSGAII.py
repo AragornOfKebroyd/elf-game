@@ -5,7 +5,7 @@ from deap import algorithms, base, creator, tools
 import random
 import time
 
-
+GENTYPE = 2 # 1 for old version
 
 class INITYPE:
     ZEROS = 0
@@ -52,13 +52,30 @@ def initialise():
         case INITYPE.BIASEDRANDOM:
             return abs(random.random() - random.random())
 
+def generateList():
+    match INIT:
+        case INITYPE.ZEROS:
+            return [0] * 32 + [0,0]
+        case INITYPE.RANDOM:
+            return [random.random() for _ in range(32)] + [random.randint(0,1), 0] # maybe make random later
+        case INITYPE.BIASEDRANDOM:
+            return [abs(random.random() - random.random()) for _ in range(32)] + [random.randint(0, 1), 0]
+
 # Define the problem and individuals
 creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -10.0))  # Minimize the second objective, maximize the first
 creator.create("Individual", list, fitness=creator.FitnessMulti)
 
 # Define the optimization problem
 toolbox = base.Toolbox()
-toolbox.register("individual", tools.initRepeat, creator.Individual, initialise, n=32)
+
+if GENTYPE == 1:
+    toolbox.register("individual", tools.initRepeat, creator.Individual, initialise, n=32)
+elif GENTYPE == 2:
+    toolbox.register("attr_int", random.randint, 0, 1)
+    toolbox.register("attr_flt", random.uniform, 0, 1)
+    spec = [toolbox.attr_flt] * 32 + [toolbox.attr_int] * 2
+    toolbox.register("individual", tools.initCycle, creator.Individual, (spec), n=1)
+    # toolbox.register("individual", tools.initIterate, creator.Individual, generateList)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("mate", tools.cxSimulatedBinaryBounded, low=0, up=1, eta=20.0)
 toolbox.register("mutate", tools.mutPolynomialBounded, low=0, up=1, eta=20.0, indpb=1.0/32)

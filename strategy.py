@@ -50,7 +50,7 @@ class Strategy:
         self.weights = weights
         self.initialised = True
     
-    def __getitem__(self, i):
+    def __getitem__(self, i, j=None):
         return self.weights[i, :]
 
     def __str__(self) -> str:
