@@ -3,6 +3,7 @@ import sys
 # allow to import from files in this dir
 sys.path.append('/optimisation')
 from objective_functions import evaluateStrategy
+from objective_functions import ElfGameStats
 
 class STRATEGYTYPE:
     FULL = 1

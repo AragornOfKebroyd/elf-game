@@ -7,8 +7,9 @@ def run_eval_set_t(S, t, elfLoss=True, elfCount=12):
     return np.array([E, VAR]), ElfStats
 
 def evaluateStrategy(S):
-    E = 12 * S.EDc(0)
-    VAR = 12**2 * S.VarDc(0)
+    ElfStats = ElfGameStats(S)
+    E = 12 * ElfStats.EDc(0)
+    VAR = 12**2 * ElfStats.VarDc(0)
     return np.array([E, VAR])
 
 class LOCATION:
