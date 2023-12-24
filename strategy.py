@@ -4,7 +4,6 @@ import sys
 sys.path.append('/optimisation')
 from objective_functions import evaluateStrategy
 
-
 class STRATEGYTYPE:
     FULL = 1
     IMPLIED = 2

@@ -6,16 +6,15 @@ def run_eval_set_t(S, t, elfLoss=True, elfCount=12):
     VAR = elfCount**2 * ElfStats.VarDc(t)
     return np.array([E, VAR]), ElfStats
 
+def evaluateStrategy(S):
+    E = 12 * S.EDc(0)
+    VAR = 12**2 * S.VarDc(0)
+    return np.array([E, VAR])
+
 class LOCATION:
     NF = 0
     FF = 1
     FFB = 2
-
-def evaluateStrategy(S):
-    ElfStats = ElfGameStats(S)
-    E = 12 * ElfStats.EDc(0)
-    VAR = 12**2 * ElfStats.VarDc(0)
-    return np.array([E, VAR])
 
 class ElfGameStats:
     def __init__(self, strategy, elfLoss=True):
