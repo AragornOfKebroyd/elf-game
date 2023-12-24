@@ -2,9 +2,10 @@ import sys
 # allow to import from files in this dir
 sys.path.append('/optimisation')
 
-from strategy import evaluateStrategyWeights, Strategy, STRATEGYTYPE
+from strategy import Strategy, STRATEGYTYPE
 from NSGAII import main as findParetoFront, INITYPE
 from plotter import loadandshow_withlabels, loadandshow, plot_with_labels
+from objective_functions import evaluateStrategyWeights
 
 import numpy as np
 import matplotlib.pyplot as plt

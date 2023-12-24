@@ -1,3 +1,9 @@
+import sys
+# allow to import from files in this dir
+sys.path.append('/optimisation')
+
+from strategy import Strategy, STRATEGYTYPE
+
 import numpy as np
 
 def run_eval_set_t(S, t, elfLoss=True, elfCount=12):
@@ -6,8 +12,15 @@ def run_eval_set_t(S, t, elfLoss=True, elfCount=12):
     VAR = elfCount**2 * ElfStats.VarDc(t)
     return np.array([E, VAR]), ElfStats
 
+def evaluateStrategyWeights(W):
+    S = Strategy(W, type=STRATEGYTYPE.IMPLIED, strict=True)
+    return evaluateStrategy(S)
+
 def evaluateStrategy(S):
     ElfStats = ElfGameStats(S)
+    return evaluateElfStats(ElfStats)
+
+def evaluateElfStats(ElfStats):
     E = 12 * ElfStats.EDc(0)
     VAR = 12**2 * ElfStats.VarDc(0)
     return np.array([E, VAR])

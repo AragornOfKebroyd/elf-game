@@ -1,17 +1,8 @@
 import numpy as np
-import sys
-# allow to import from files in this dir
-sys.path.append('/optimisation')
-from objective_functions import evaluateStrategy
-from objective_functions import ElfGameStats
 
 class STRATEGYTYPE:
     FULL = 1
     IMPLIED = 2
-
-def evaluateStrategyWeights(W):
-    S = Strategy(W, type=STRATEGYTYPE.IMPLIED, strict=True)
-    return evaluateStrategy(S)
 
 class Strategy:
     def __init__(self, W=None, type=STRATEGYTYPE.FULL, strict=False):

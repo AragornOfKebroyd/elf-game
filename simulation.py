@@ -54,11 +54,9 @@ def run_sim_set_t(S, t, n=1_000, elfLoss=True, elfCount=12, plothist=False):
     usedS = S[t:]
     Env = ElfGame(usedS, elfLoss=elfLoss, elfCount=elfCount)
     results = np.array([])
-    test= []
     for _ in range(n):
         Env.run()
         results = np.append(results, Env.money)
-        test.append(np.array(Env.history)[:,3])
 
     E = np.mean(results)
     VAR = np.var(results)
